@@ -1,22 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
+const ThemesStyles = {
+  dark:{
+    backgrround:'#282c34',
+    textColor: 'white'
+  },
+  ligh:{
+    backgrround:'white',
+    textColor: '#282c34'
+  }
+}
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+  const toggleTheme = () => theme === 'dark' ? setTheme('ligh') : setTheme('dark');
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" style={{backgroundColor: ThemesStyles[theme].backgrround, color: ThemesStyles[theme].textColor}}>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Current Theme is "{theme}"
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={toggleTheme}>
+          Toggle Button
+        </button>
       </header>
     </div>
   );
